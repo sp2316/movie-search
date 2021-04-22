@@ -1,5 +1,4 @@
 {
     type:'ADD_MOVIES',
-    "movies":[]
-    
+    movies:[]
 }
