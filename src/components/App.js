@@ -15,9 +15,9 @@ function App() {
       </div>
 
       <div className="list">
-
-        {data.map(movie => (
-          <MovieCard movie={movie}/>
+          //map can take the value and the index from an array and pass to the callback function
+        {data.map((movie,index) => (
+          <MovieCard movie={movie} key={`movies-${index}`}/>
         ))}
 
       </div>
