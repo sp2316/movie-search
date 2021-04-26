@@ -105,11 +105,11 @@ body{margin:0px;}
   border-radius: 3px;
   border: 1px solid #e1e1e1;
 }
-/*
+
 .active-tabs {
   background: #2185d0 !important;
   color: white;
-}*/
+}
 
 .main .tabs .tab:hover {
   cursor: pointer;
