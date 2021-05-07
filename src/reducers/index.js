@@ -1,4 +1,9 @@
-import {ADD_MOVIES,ADD_TO_FAVOURITES,REMOVE_FROM_FAVOURITES,SET_SHOW_FAVOURITES} from '../actions';
+import {combineReducers} from 'redux';
+
+import {ADD_MOVIES,
+        ADD_TO_FAVOURITES,
+        REMOVE_FROM_FAVOURITES,
+        SET_SHOW_FAVOURITES} from '../actions';
 
 //state will be undefined in the beginning,so we use default parameters
 const initialMoviesState={
@@ -54,17 +59,22 @@ return state;
 
 }
 
-const initialRootState={
-    movies:initialMoviesState,
-    search:initialSearchState
-}
+// const initialRootState={
+//     movies:initialMoviesState,
+//     search:initialSearchState
+// }
 
-export default function rootReducer(state=initialRootState,action){
+// export default function rootReducer(state=initialRootState,action){ //action contains action type and the new data to be added or modified
 
- return{
-     movies:movies(state.movies,action),
-     search:search(state.search,action)
- }
+//  return{
+//      movies:movies(state.movies,action),
+//      search:search(state.search,action)
+//  }
 
 
-}
+// }
+//same as above... redux is smart enough to call the reducers with the appropriate parameters if we just mention the property:reducer
+export default combineReducers({
+    movies, //or movies:movies 
+    search //or search:search
+})
