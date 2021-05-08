@@ -43,6 +43,11 @@ export function movies(state=initialMoviesState,action){  //current state of sto
                  ...state,
                  showFavourites:action.val
              }    
+         case ADD_MOVIE_TO_LIST:
+             return {
+                 ...state,
+                 list:[action.movie,...state.list]
+             }    
         default:
                 return state;
 
@@ -63,6 +68,12 @@ export function search(state=initialSearchState,action){
                 result:action.movie,
                 showSearchResults:true
             }
+            case ADD_MOVIE_TO_LIST:
+             return {
+                 ...state,
+                 showSearchResults:false
+                
+             }    
         default:
                 return state;
 
