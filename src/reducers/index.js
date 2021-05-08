@@ -3,7 +3,9 @@ import {combineReducers} from 'redux';
 import {ADD_MOVIES,
         ADD_TO_FAVOURITES,
         REMOVE_FROM_FAVOURITES,
-        SET_SHOW_FAVOURITES} from '../actions';
+        SET_SHOW_FAVOURITES,
+        ADD_MOVIE_TO_LIST,
+        ADD_SEARCH_RESULT} from '../actions';
 
 //state will be undefined in the beginning,so we use default parameters
 const initialMoviesState={
@@ -48,14 +50,23 @@ export function movies(state=initialMoviesState,action){  //current state of sto
 }
 
 const initialSearchState={
-    result:{}
+    result:{},
+    showSearchResults:false,
 }
 
 export function search(state=initialSearchState,action){
+   
+    switch(action.type){
+        case  ADD_SEARCH_RESULT:
+            return{
+                ...state,
+                result:action.movie,
+                showSearchResults:true
+            }
+        default:
+                return state;
 
-return state;
-    
-
+    }
 
 }
 
