@@ -22,7 +22,8 @@ body{margin:0px;}
 .search-container {
   position: relative;
 }
-/* .search-results {
+/**/
+.search-results {
   position: absolute;
   background: #fff;
   width: 100%;
@@ -59,8 +60,8 @@ body{margin:0px;}
   font-size: 20px;
   padding: 10px;
   font-weight: 600;
-} */
-
+}
+/**/
 .search-container input:focus,
 .search-container button:focus,
 .footer button:focus,
