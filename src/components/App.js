@@ -53,7 +53,6 @@ class App extends React.Component {
       //so we use wrapper so that all the methods can make use of store 
         <div className="App">
             <Navbar 
-             dispatch={this.props.store.dispatch}
              search={search}
             />
           <div className="main">
