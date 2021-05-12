@@ -58,6 +58,54 @@ const store=createStore(rootReducer,applyMiddleware(logger,thunk)); //no matter 
 
 export const StoreContext=createContext();
 
+//const connectedAppComponent = connect(callback)(App)
+
+export function connect(callback){
+
+    return function(Component){
+
+       class ConnectedComponent extends React.Component{
+
+          constructor(props){
+            super(props);
+            this.unsubscribe =this.props.store.subscribe(() => this.forceUpdate());
+          }
+
+          componentWillUnmount(){
+            this.unsubscribe();
+          }
+
+          render(){
+                  const {store}=this.props;
+                  const state=store.getState();
+                  const dataToBePassedAsProps = callback(state);
+                  return (
+                  <Component 
+                  {...dataToBePassedAsProps} //spread will do something like this-> movies={movies} search-{search}
+                  dispatch={store.dispatch} //passing dispatch by default
+                  />
+                  );
+                }
+              
+          }
+    
+      
+
+        class ConnectedComponentWrapper extends React.Component{
+          render(){
+            return(
+            <StoreContext.Consumer>
+              {store => <ConnectedComponent store={store}/>}
+            </StoreContext.Consumer>
+            );
+          }
+        };
+
+        return ConnectedComponentWrapper;
+    }
+
+}
+
 
 ReactDOM.render(
   <Provider store={store}>

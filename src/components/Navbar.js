@@ -68,9 +68,9 @@ class NavbarWrapper extends React.Component{
     render(){
         return(
             <StoreContext.Consumer>
-                    //we only need the dispatch method so we save only that method
+                    {/* we only need the dispatch method so we save only that method*/}
                 {(store)=><Navbar dispatch={store.dispatch} search={this.props.search}/>}
-                    //we pass search from the App component..so we store it..
+                    {/*we pass search from the App component..so we store it..*/}
 
             </StoreContext.Consumer>
         )
