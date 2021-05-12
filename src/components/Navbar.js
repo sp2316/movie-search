@@ -12,6 +12,7 @@ class Navbar extends React.Component {
 
     handleAddToMovies = (movie)=>{
         this.props.dispatch(addMovieToList(movie));
+
     }
 
     handleSearch = () =>{
@@ -21,6 +22,7 @@ class Navbar extends React.Component {
     }
 
     handleChange= (event) =>{
+       
         this.setState({
             searchText:event.target.value
         });
@@ -35,7 +37,11 @@ class Navbar extends React.Component {
                 <input onChange={this.handleChange}/>
                 <button id="search-btn" onClick={this.handleSearch}>Search</button>
 
-                {showSearchResults && 
+                {showSearchResults && (movie.Title===undefined? 
+                <div className="search-results">
+                 No movies found..!
+                </div>
+                 :
                  <div className="search-results">
                     <div className="search-result">
                     <img src={movie.Poster} alt="search-pic"/>
@@ -50,11 +56,14 @@ class Navbar extends React.Component {
             </div>
               </div>
               
-        }
+                 ) }
         </div>
         </div>
         );
 }
 }
+
+// class 
+
 
 export default Navbar;

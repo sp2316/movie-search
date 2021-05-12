@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext } from 'react';
 import ReactDOM from 'react-dom';
 import {createStore,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -43,12 +43,26 @@ const logger=({dispatch,getState})=>(next)=>(action)=>{
 //   next(action);
 // }
 
+class Provider extends React.Component{
+  render(){
+  const {store}=this.props;
+  return <StoreContext.Provider value ={store}> 
+            {this.props.children}
+          </StoreContext.Provider>
+
+  }
+}
+
 const store=createStore(rootReducer,applyMiddleware(logger,thunk)); //no matter what reducer you call, the combineReducers() is only called here
 
+
+export const StoreContext=createContext();
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App store={store}/>
-  </React.StrictMode>,
+  <Provider store={store}>
+      <App store={store}/>
+  </Provider>,
   document.getElementById('root')
 );
 

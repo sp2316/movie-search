@@ -3,6 +3,8 @@ import {data} from '../data';
 import Navbar from './Navbar';
 import MovieCard from './MovieCard';
 import {addMovies, setShowFavourites} from '../actions'
+import {StoreContext} from '../index';
+
 class App extends React.Component {
 
   componentDidMount(){
@@ -45,7 +47,10 @@ class App extends React.Component {
     console.log('RENDER',this.props.store.getState());
 
     const displayMovies =showFavourites? favourites : list ;
+    
     return (
+      //we can place the consumer method here also but we wont be able to access the store outside our render i.e in CDM or CDU() calls,
+      //so we use wrapper so that all the methods can make use of store 
         <div className="App">
             <Navbar 
              dispatch={this.props.store.dispatch}
@@ -76,4 +81,17 @@ class App extends React.Component {
 }
 }
 
-export default App;
+//wrapper
+class AppWrapper extends React.Component{
+  render(){
+    return(
+    <StoreContext.Consumer>
+      {
+        (store)=><App store={store}/>
+      }
+    </StoreContext.Consumer>
+    );
+  }
+}
+
+export default AppWrapper;
