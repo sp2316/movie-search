@@ -1,4 +1,5 @@
-import React, { createContext } from 'react';
+import React from 'react';
+import {Provider} from 'react-redux';
 import ReactDOM from 'react-dom';
 import {createStore,applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -43,68 +44,68 @@ const logger=({dispatch,getState})=>(next)=>(action)=>{
 //   next(action);
 // }
 
-class Provider extends React.Component{
-  render(){
-  const {store}=this.props;
-  return <StoreContext.Provider value ={store}> 
-            {this.props.children}
-          </StoreContext.Provider>
+// class Provider extends React.Component{
+//   render(){
+//   const {store}=this.props;
+//   return <StoreContext.Provider value ={store}> 
+//             {this.props.children}
+//           </StoreContext.Provider>
 
-  }
-}
+//   }
+// }
 
 const store=createStore(rootReducer,applyMiddleware(logger,thunk)); //no matter what reducer you call, the combineReducers() is only called here
 
 
-export const StoreContext=createContext();
+// export const StoreContext=createContext();
 
 //const connectedAppComponent = connect(callback)(App)
 
-export function connect(callback){
+// export function connect(callback){
 
-    return function(Component){
+//     return function(Component){
 
-       class ConnectedComponent extends React.Component{
+//        class ConnectedComponent extends React.Component{
 
-          constructor(props){
-            super(props);
-            this.unsubscribe =this.props.store.subscribe(() => this.forceUpdate());
-          }
+//           constructor(props){
+//             super(props);
+//             this.unsubscribe =this.props.store.subscribe(() => this.forceUpdate());
+//           }
 
-          componentWillUnmount(){
-            this.unsubscribe();
-          }
+//           componentWillUnmount(){
+//             this.unsubscribe();
+//           }
 
-          render(){
-                  const {store}=this.props;
-                  const state=store.getState();
-                  const dataToBePassedAsProps = callback(state);
-                  return (
-                  <Component 
-                  {...dataToBePassedAsProps} //spread will do something like this-> movies={movies} search-{search}
-                  dispatch={store.dispatch} //passing dispatch by default
-                  />
-                  );
-                }
+//           render(){
+//                   const {store}=this.props;
+//                   const state=store.getState();
+//                   const dataToBePassedAsProps = callback(state);
+//                   return (
+//                   <Component 
+//                   {...dataToBePassedAsProps} //spread will do something like this-> movies={movies} search={search}
+//                   dispatch={store.dispatch} //passing dispatch by default
+//                   />
+//                   );
+//                 }
               
-          }
+//           }
     
       
 
-        class ConnectedComponentWrapper extends React.Component{
-          render(){
-            return(
-            <StoreContext.Consumer>
-              {store => <ConnectedComponent store={store}/>}
-            </StoreContext.Consumer>
-            );
-          }
-        };
+//         class ConnectedComponentWrapper extends React.Component{
+//           render(){
+//             return(
+//             <StoreContext.Consumer>
+//               {store => <ConnectedComponent store={store}/>}
+//             </StoreContext.Consumer>
+//             );
+//           }
+//         };
 
-        return ConnectedComponentWrapper;
-    }
+//         return ConnectedComponentWrapper;
+//     }
 
-}
+// }
 
 
 ReactDOM.render(

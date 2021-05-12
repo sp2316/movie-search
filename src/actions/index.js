@@ -48,9 +48,9 @@ export function addMovieToList(movie){
 }
 //responsible for fetching data from server
 //async action
-export function handleMovieSearch(movie){
+export function handleMovieSearch(searchText){
 
-    const url=`http://www.omdbapi.com/?apikey=2614370f&t=${movie}`; //returns one movie only
+    const url=`http://www.omdbapi.com/?apikey=2614370f&t=${searchText}`; //returns one movie only
 
     return function(dispatch){
     fetch(url)

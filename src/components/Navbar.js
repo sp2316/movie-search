@@ -1,6 +1,6 @@
 import React from 'react';
-import { StoreContext } from '../index';
 import {addMovieToList,handleMovieSearch} from '../actions'
+import {connect} from 'react-redux';
 
 class Navbar extends React.Component {
 
@@ -64,18 +64,29 @@ class Navbar extends React.Component {
 }
 }
 
-class NavbarWrapper extends React.Component{
-    render(){
-        return(
-            <StoreContext.Consumer>
-                    {/* we only need the dispatch method so we save only that method*/}
-                {(store)=><Navbar dispatch={store.dispatch} search={this.props.search}/>}
-                    {/*we pass search from the App component..so we store it..*/}
+// class NavbarWrapper extends React.Component{
+//     render(){
+//         return(
+//             <StoreContext.Consumer>
+//                     {/* we only need the dispatch method so we save only that method*/}
+//                 {(store)=><Navbar dispatch={store.dispatch} search={this.props.search}/>}
+//                     {/*we pass search from the App component..so we store it..*/}
 
-            </StoreContext.Consumer>
-        )
+//             </StoreContext.Consumer>
+//         )
+//     }
+// }
+
+
+
+//mapping redux state to props for the app component
+function mapStateToProps(state){
+    return{
+      search:state.search
     }
-}
+  }
+  
+  const connectedNavbarComponent =connect(mapStateToProps)(Navbar);//the properties mentioned above will be coming as props to Navbar component
+  
 
-
-export default NavbarWrapper;
+export default connectedNavbarComponent;
