@@ -56,9 +56,10 @@ const logger=({dispatch,getState})=>(next)=>(action)=>{
 
 const store=createStore(rootReducer,applyMiddleware(logger,thunk)); //no matter what reducer you call, the combineReducers() is only called here
 
-
+//this is how we create context manually
 // export const StoreContext=createContext();
 
+//this is how connect works manually
 //const connectedAppComponent = connect(callback)(App)
 
 // export function connect(callback){
@@ -109,7 +110,7 @@ const store=createStore(rootReducer,applyMiddleware(logger,thunk)); //no matter 
 
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store}> //provider from the package
       <App store={store}/>
   </Provider>,
   document.getElementById('root')

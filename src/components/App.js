@@ -93,6 +93,6 @@ function mapStateToProps(state){
 }
 
 const connectedAppComponent =connect(mapStateToProps)(App);//the properties mentioned above will be coming as props to app component
-
+//connect comes from package
 
 export default connectedAppComponent;
