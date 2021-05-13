@@ -1,6 +1,7 @@
-
+1. Movies in my list
 <img width="1791" alt="Screenshot 2021-05-13 at 7 41 01 PM" src="https://user-images.githubusercontent.com/39809810/118138246-b8aafa00-b423-11eb-88c6-503679f47525.png"><img width="1791" alt="Screenshot 2021-05-13 at 7 41 14 PM" src="https://user-images.githubusercontent.com/39809810/118138265-bd6fae00-b423-11eb-9f59-2ee807ae63c1.png">
 
+2.Selecting Favourites
 <img width="1791" alt="Screenshot 2021-05-13 at 7 41 22 PM" src="https://user-images.githubusercontent.com/39809810/118138274-c06a9e80-b423-11eb-9813-6edb6a5daa63.png">
 # Getting Started with Create React App
 <img width="1791" alt="Screenshot 2021-05-13 at 7 41 45 PM" src="https://user-images.githubusercontent.com/39809810/118138284-c2ccf880-b423-11eb-9a19-b8c810b6cbbb.png">
